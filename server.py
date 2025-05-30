@@ -61,6 +61,10 @@ def handle_audio(data):
     
     with wave.open(filename, 'wb') as wf:
         wf.setnchannels(CHANNELS)
+
+        if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))  # Railway injects PORT
+    socketio.run(app, host='0.0.0.0', port=port)
         wf.setsampwidth(2)
         wf.setframerate(RATE)
         wf.writeframes(scaled.tobytes())
